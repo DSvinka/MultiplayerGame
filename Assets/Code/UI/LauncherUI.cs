@@ -4,31 +4,31 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Code.Photon
+namespace Code.UI
 {
-    public class PhotonLauncherUI: MonoBehaviour
+    public class LauncherUI: MonoBehaviour
     {
         [Header("UI")]
         [SerializeField] private Button _connectButton;
         [SerializeField] private TMP_Text _connectButtonText;
 
-        [Header("Objects")]
-        [SerializeField] private PhotonLauncher _photonLauncher;
+        [Header("Менеджеры")]
+        [SerializeField] private LauncherManager _launcherManager;
 
         private void Start()
         {
             _connectButton.onClick.AddListener(OnConnectButton);
 
-            _photonLauncher.OnConnect += OnConnect;
-            _photonLauncher.OnDisconnect += OnDisconnect;
+            _launcherManager.OnConnect += OnConnect;
+            _launcherManager.OnDisconnect += OnDisconnect;
         }
 
         private void OnDestroy()
         {
             _connectButton.onClick.RemoveAllListeners();
             
-            _photonLauncher.OnConnect -= OnConnect;
-            _photonLauncher.OnDisconnect -= OnDisconnect;
+            _launcherManager.OnConnect -= OnConnect;
+            _launcherManager.OnDisconnect -= OnDisconnect;
         }
 
         /// <summary>
@@ -52,13 +52,13 @@ namespace Code.Photon
 
         private void OnConnectButton()
         {
-            if (_photonLauncher.IsConnected)
+            if (_launcherManager.IsConnected)
             {
-                _photonLauncher.Disconnect();
+                _launcherManager.Disconnect();
             }
             else
             {
-                _photonLauncher.Connect();
+                _launcherManager.Connect();
             }
         }
     }

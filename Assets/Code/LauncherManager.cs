@@ -1,20 +1,26 @@
 ﻿using System;
 using Code.Shared.Constants;
+using Code.Utils;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-namespace Code.Photon
+namespace Code
 {
-    public class PhotonLauncher: MonoBehaviourPunCallbacks
+    public class LauncherManager: MonoBehaviourPunCallbacks
     {
-        public bool IsConnected => PhotonNetwork.IsConnected;
+        #region Ивенты
         
         public event Action OnConnect;
         public event Action<DisconnectCause> OnDisconnect;
+        
         public event Action OnJoinToLobby;
         public event Action OnJoinToRoom;
         
+        #endregion
+        
+        public bool IsConnected => PhotonNetwork.IsConnected;
+
         /// <summary>
         /// Если подключение к серверам отсутствует, подключает пользователя к серверам Photon, используя настройки из файла PhotonServerSettings
         /// </summary>
@@ -37,7 +43,9 @@ namespace Code.Photon
                 PhotonNetwork.Disconnect();
             }
         }
-        
+
+        #region Unity Методы
+
         private void Awake()
         {
             PhotonNetwork.AutomaticallySyncScene = PhotonConstants.AutomaticallySyncScene;
@@ -48,9 +56,13 @@ namespace Code.Photon
             Connect();
         }
 
+        #endregion
+
+        #region Photon Методы
+        
         public override void OnDisconnected(DisconnectCause cause)
         {
-            DLogger.Debug(nameof(PhotonLauncher), nameof(OnDisconnected), 
+            DLogger.Debug(nameof(LauncherManager), nameof(OnDisconnected), 
                 "Disconnected from Photon!");
             
             OnDisconnect?.Invoke(cause);
@@ -58,7 +70,7 @@ namespace Code.Photon
 
         public override void OnConnectedToMaster()
         {
-            DLogger.Debug(nameof(PhotonLauncher), nameof(OnConnectedToMaster), 
+            DLogger.Debug(nameof(LauncherManager), nameof(OnConnectedToMaster), 
                 "Connected to Master!");
             
             OnConnect?.Invoke();
@@ -67,7 +79,7 @@ namespace Code.Photon
 
         public override void OnJoinedLobby()
         {
-            DLogger.Debug(nameof(PhotonLauncher), nameof(OnJoinedLobby), 
+            DLogger.Debug(nameof(LauncherManager), nameof(OnJoinedLobby), 
                 $"Joined to Lobby! [InLobby={PhotonNetwork.InLobby}]");
             
             OnJoinToLobby?.Invoke();
@@ -81,10 +93,12 @@ namespace Code.Photon
 
         public override void OnJoinedRoom()
         {
-            DLogger.Debug(nameof(PhotonLauncher), nameof(OnJoinedRoom), 
+            DLogger.Debug(nameof(LauncherManager), nameof(OnJoinedRoom), 
                 $"Joined to Room! [InRoom={PhotonNetwork.InRoom}]");
             
             OnJoinToRoom?.Invoke();
         }
+        
+        #endregion
     }
 }
