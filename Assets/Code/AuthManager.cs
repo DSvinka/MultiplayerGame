@@ -22,16 +22,6 @@ namespace Code
 
         #endregion
 
-
-        #region Unity Методы
-
-        // private void Start()
-        // {
-        //     LoginAsGuest();
-        // }
-
-        #endregion
-        
         public void Logout()
         {
             PlayFabClientAPI.ForgetAllCredentials();
