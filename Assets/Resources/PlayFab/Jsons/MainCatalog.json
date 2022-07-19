@@ -1,0 +1,88 @@
+{
+  "CatalogVersion": "MainCatalog",
+  "Catalog": [
+    {
+      "ItemId": "One",
+      "ItemClass": null,
+      "CatalogVersion": "MainCatalog",
+      "DisplayName": "My first item",
+      "Description": null,
+      "VirtualCurrencyPrices": null,
+      "RealCurrencyPrices": null,
+      "Tags": null,
+      "CustomData": null,
+      "Consumable": null,
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": false,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    },
+    {
+      "ItemId": "homemade_pistol_id",
+      "ItemClass": "pistol",
+      "CatalogVersion": "MainCatalog",
+      "DisplayName": "Самодельный Пистолет",
+      "Description": "Хоть он и сделан из подручных материалов, его простота ремонта и модификации заслуживает похвалы.",
+      "VirtualCurrencyPrices": {
+        "ML": 300
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "\"weapon",
+        "homemade\""
+      ],
+      "CustomData": "{\"damage\":\"10\",\"shot_cooldown\":\"0.5\",\"ammo_clip_bullets_count\":\"12\",\"ammo_max_count\":\"60\",\"spread\":\"2\",\"recoil_up\":\"1\",\"recoil_side\":\"0\",\"reload_time\":\"3\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": true,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    },
+    {
+      "ItemId": "homemade_rifle_id",
+      "ItemClass": "Homemade Rifle",
+      "CatalogVersion": "MainCatalog",
+      "DisplayName": "Самодельный Автомат",
+      "Description": "Автомат сделанный из подручных материалов (осторожно, может расплавится)",
+      "VirtualCurrencyPrices": {
+        "ML": 2000
+      },
+      "RealCurrencyPrices": {},
+      "Tags": [
+        "\"weapon",
+        "homemade",
+        "rifle\""
+      ],
+      "CustomData": "{\"damage\":\"3\",\"shot_cooldown\":\"0.1\",\"ammo_clip_bullets_count\":\"60\",\"ammo_max_count\":\"300\",\"spread\":\"5\",\"recoil_up\":\"5\",\"recoil_side\":\"5\",\"reload_time\":\"5\"}",
+      "Consumable": {
+        "UsageCount": null,
+        "UsagePeriod": null,
+        "UsagePeriodGroup": null
+      },
+      "Container": null,
+      "Bundle": null,
+      "CanBecomeCharacter": false,
+      "IsStackable": false,
+      "IsTradable": true,
+      "ItemImageUrl": null,
+      "IsLimitedEdition": false,
+      "InitialLimitedEditionCount": 0,
+      "ActivatedMembership": null
+    }
+  ],
+  "DropTables": []
+}
