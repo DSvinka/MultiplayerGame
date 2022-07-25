@@ -35,7 +35,7 @@ namespace Code.Managers
                 
                 LeaveRoom();
             }
-            
+
             PhotonNetwork.JoinRoom(code);
         }
         
@@ -53,6 +53,15 @@ namespace Code.Managers
         
         public void JoinRandomRoom()
         {
+            if (PhotonNetwork.InRoom)
+            {
+                DLogger.Warning(GetType(), nameof(JoinRoom),
+                    "The client is already in the room! " +
+                    "Disconnecting a client from the old room and connecting him to the new room...");
+                
+                LeaveRoom();
+            }
+            
             PhotonNetwork.JoinRandomRoom();
         }
         
