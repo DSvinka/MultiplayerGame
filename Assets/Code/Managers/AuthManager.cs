@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Code.Interfaces.Managers;
 using Code.Shared.Constants;
 using Code.Utils;
+using Photon.Pun;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine;
@@ -22,6 +24,12 @@ namespace Code.Managers
 
         #endregion
 
+        private static string _playFabId;
+        private static string _username;
+
+        public static string PlayFabId => _playFabId;
+        public static string Username => _username;
+
         public void Logout()
         {
             PlayFabClientAPI.ForgetAllCredentials();
@@ -35,6 +43,8 @@ namespace Code.Managers
 
         public void Login(string username, string password)
         {
+            _username = username;
+            
             var registerRequest = new LoginWithPlayFabRequest()
             {
                 Username = username,
@@ -54,6 +64,8 @@ namespace Code.Managers
             var needCreation = PlayerPrefs.HasKey(PlayerPrefsKeys.AuthGuestGuidKey);
             var id = PlayerPrefs.GetString(PlayerPrefsKeys.AuthGuestGuidKey, Guid.NewGuid().ToString());
 
+            _username = id;
+            
             var loginRequest = new LoginWithCustomIDRequest()
             {
                 CustomId = id,
@@ -72,6 +84,7 @@ namespace Code.Managers
         {
             DLogger.Debug(GetType(), nameof(OnLogin), 
                 "Login Complete!");
+            _playFabId = loginResult.PlayFabId;
             OnLoginSuccess?.Invoke(loginResult);
         }
 
@@ -90,6 +103,8 @@ namespace Code.Managers
 
         public void Register(string username, string password, string email)
         {
+            _username = username;
+            
             var registerRequest = new RegisterPlayFabUserRequest()
             {
                 Email = email,
@@ -100,11 +115,11 @@ namespace Code.Managers
             PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegister, OnRegisterError);
         }
 
-        
         private void OnRegister(RegisterPlayFabUserResult registerResult)
         {
             DLogger.Debug(GetType(), nameof(OnRegister), 
                 $"Register Complete! [Username={registerResult.Username}]");
+            _playFabId = registerResult.PlayFabId;
             OnRegisterSuccess?.Invoke(registerResult);
         }
         

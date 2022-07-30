@@ -12,17 +12,19 @@ namespace Code.Views.UI.Auth
     {
         [SerializeField] private InputField _emailInput;
 
-        [Header("Кнопки")]
+        [Header("Buttons")]
         [SerializeField] private Button _registerButton;
         [SerializeField] private Button _closeButton;
         
-        [Header("Индикаторы")] 
+        [Header("Indicators")] 
         [SerializeField] private GameObject _loadingIndicator;
         [SerializeField] private Text _errorText;
         
-        [Header("Менеджеры")]
+        [Header("Managers")]
         [SerializeField] private AuthManager _authManager;
-        [SerializeField] private AuthWindowsManager _authWindowsManager;
+        
+        [Header("Controllers")]
+        [SerializeField] private AuthWindowsController _authWindowsController;
         
         private string _email;
 
@@ -46,7 +48,7 @@ namespace Code.Views.UI.Auth
             _emailInput.onValueChanged.AddListener(UpdateEmail);
             
             _registerButton.onClick.AddListener(Register);
-            _closeButton.onClick.AddListener(_authWindowsManager.OpenAuthWindow);
+            _closeButton.onClick.AddListener(_authWindowsController.OpenAuthWindow);
             
             _authManager.OnRegisterSuccess += OnRegisterSuccess;
             _authManager.OnRegisterFailed += OnRegisterFailed;
@@ -64,7 +66,7 @@ namespace Code.Views.UI.Auth
             _authManager.OnRegisterSuccess -= OnRegisterSuccess;
             _authManager.OnRegisterFailed -= OnRegisterFailed;
         }
-        
+
         private void OnRegisterSuccess(RegisterPlayFabUserResult registerResult)
         {
             _loadingIndicator.SetActive(false);
