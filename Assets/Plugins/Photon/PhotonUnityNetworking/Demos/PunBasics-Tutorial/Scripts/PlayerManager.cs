@@ -96,7 +96,7 @@ namespace Photon.Pun.Demo.PunBasics
             // Create the UI
             if (this.playerUiPrefab != null)
             {
-                GameObject _uiGo = Instantiate(this.playerUiPrefab);
+                var _uiGo = Instantiate(this.playerUiPrefab);
                 _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
             }
             else

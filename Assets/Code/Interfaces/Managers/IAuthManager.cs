@@ -14,6 +14,9 @@ namespace Code.Interfaces.Managers
         event Action<RegisterPlayFabUserResult> OnRegisterSuccess;
         event Action<PlayFabError> OnRegisterFailed;
         
+        static string Username { get; }
+        static string PlayFabId { get; }
+        
         /// <summary>
         /// Забывает аккаунт пользователя (выход из аккаунта)
         /// </summary>

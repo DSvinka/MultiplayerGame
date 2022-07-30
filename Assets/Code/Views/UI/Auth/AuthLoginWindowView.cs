@@ -10,17 +10,19 @@ namespace Code.Views.UI.Auth
 {
     public class AuthLoginWindowView: AuthWindowBase
     {
-        [Header("Кнопки")]
+        [Header("Buttons")]
         [SerializeField] private Button _loginButton;
         [SerializeField] private Button _closeButton;
 
-        [Header("Индикаторы")] 
+        [Header("Indicators")] 
         [SerializeField] private GameObject _loadingIndicator;
         [SerializeField] private Text _errorText;
         
-        [Header("Менеджеры")]
+        [Header("Managers")]
         [SerializeField] private AuthManager _authManager;
-        [SerializeField] private AuthWindowsManager _authWindowsManager;
+        
+        [Header("Controllers")]
+        [SerializeField] private AuthWindowsController _authWindowsController;
 
         private void Login()
         {
@@ -35,7 +37,7 @@ namespace Code.Views.UI.Auth
             base.SubscribeToUI();
             
             _loginButton.onClick.AddListener(Login);
-            _closeButton.onClick.AddListener(_authWindowsManager.OpenAuthWindow);
+            _closeButton.onClick.AddListener(_authWindowsController.OpenAuthWindow);
             
             _authManager.OnLoginSuccess += OnLoginSuccess;
             _authManager.OnLoginFailed += OnLoginFailed;

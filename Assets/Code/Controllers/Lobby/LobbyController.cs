@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.Managers;
 using Code.Models;
 using Code.Shared.Constants;
-using Code.Views.UI;
 using Code.Views.UI.Lobby;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
-namespace Code.Controllers
+namespace Code.Controllers.Lobby
 {
     public class LobbyController: MonoBehaviour
     {
@@ -24,6 +22,7 @@ namespace Code.Controllers
         [SerializeField] private ConnectionManager _connectionManager;
         [SerializeField] private LobbyManager _lobbyManager;
         [SerializeField] private RoomManager _roomManager;
+        [SerializeField] private AuthManager _authManager;
 
         private Dictionary<string, RoomView> _roomViews;
         private RoomView _userRoomView;
@@ -81,6 +80,7 @@ namespace Code.Controllers
 
         private void OnConnected()
         {
+            PhotonNetwork.NickName = AuthManager.Username;
             _lobbyManager.JoinLobby();
         }
         

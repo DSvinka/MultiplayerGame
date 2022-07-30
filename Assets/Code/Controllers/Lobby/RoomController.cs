@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Code.Managers;
 using Code.Models;
 using Code.Shared.Constants;
@@ -12,7 +11,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 
-namespace Code.Controllers
+namespace Code.Controllers.Lobby
 {
     public class RoomController: MonoBehaviour
     {
@@ -73,6 +72,7 @@ namespace Code.Controllers
             _view.OnLeaveRoomSubmit -= OnLeaveRoomSubmit;
             _view.OnStartGameSubmit -= OnStartGameSubmit;
             
+            _updateInfoInRoomSequence?.Kill();
             _roomPlayerViews.Clear();
         }
 
@@ -111,6 +111,9 @@ namespace Code.Controllers
         /// <param name="ignoreMasterClientCheck">Отключает проверку на владельца комнаты</param>
         private void UpdateInformationInRoomView(bool ignoreMasterClientCheck = false)
         {
+            if (!PhotonNetwork.InRoom)
+                return;
+            
             var room = PhotonNetwork.CurrentRoom;
 
             _view.UpdateRoomInformation(
@@ -158,6 +161,7 @@ namespace Code.Controllers
             DLogger.Info(GetType(), nameof(OnStartGameSubmit), 
                 "Game Started!");
             _roomManager.EditRoom(null, false);
+            PhotonNetwork.LoadLevel((int) EScenesIndexes.Game);
         }
 
         #endregion

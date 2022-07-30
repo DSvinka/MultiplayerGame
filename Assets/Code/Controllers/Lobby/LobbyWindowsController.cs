@@ -1,10 +1,9 @@
 ﻿using System;
 using Code.Managers;
-using Code.Views.UI;
 using Photon.Realtime;
 using UnityEngine;
 
-namespace Code.Controllers
+namespace Code.Controllers.Lobby
 {
     public class LobbyWindowsController: MonoBehaviour
     {
