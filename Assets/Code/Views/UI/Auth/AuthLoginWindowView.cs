@@ -57,7 +57,7 @@ namespace Code.Views.UI.Auth
         private void OnLoginSuccess(LoginResult loginResult)
         {
             _loadingIndicator.SetActive(false);
-            ChangeSceneToLobby();
+            ChangeSceneToCharacters();
         }
         
         private void OnLoginFailed(PlayFabError playFabError)

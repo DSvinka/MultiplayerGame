@@ -70,7 +70,7 @@ namespace Code.Views.UI.Auth
         private void OnRegisterSuccess(RegisterPlayFabUserResult registerResult)
         {
             _loadingIndicator.SetActive(false);
-            ChangeSceneToLobby();
+            ChangeSceneToCharacters();
         }
         
         private void OnRegisterFailed(PlayFabError playFabError)

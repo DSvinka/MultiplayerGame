@@ -19,7 +19,7 @@ namespace Code.Controllers.Game
         
         [Header("Managers")]
         [SerializeField] private RoomManager _roomManager;
-        [SerializeField] private UserDataManager _userDataManager;
+        [SerializeField] private CharacterDataManager _characterDataManager;
 
 
         public PlayerView PlayerView => _playerView;
@@ -57,9 +57,9 @@ namespace Code.Controllers.Game
         {
             var playerGo = PhotonNetwork.Instantiate(_playerPrefab.name, new Vector3(0f,5f,0f), Quaternion.identity, 0);
             _playerView = playerGo.GetComponent<PlayerView>();
-            _playerView.SetUserDataModel(_userDataManager.UserDataModel);
+            _playerView.SetUserDataModel(_characterDataManager.CharacterDataModel);
             _playerView.Beams.SetActive(false);
-            _playerView.Health = 1f;
+            _playerView.Health = 100;
 
             var cameraWork = playerGo.GetComponent<CameraWork>();
             cameraWork.OnStartFollowing();

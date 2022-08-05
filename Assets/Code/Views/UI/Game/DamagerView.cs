@@ -6,7 +6,7 @@ namespace Code.Views.UI.Game
     [RequireComponent(typeof(Collider))]
     public class DamagerView: MonoBehaviourPun
     {
-        [SerializeField] private float _damage = 0.1f;
+        [SerializeField] private int _damage = 1;
         
         private void OnTriggerStay(Collider other)
         {
@@ -14,7 +14,7 @@ namespace Code.Views.UI.Game
             {
                 return;
             }
-            playerView.Health -= _damage * Time.deltaTime;
+            playerView.Health -= _damage;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Code.Views.UI.Game
         public bool IsMine => photonView.IsMine;
         public string NickName => photonView.Owner.NickName;
 
-        public float Health
+        public int Health
         {
             get => _health;
             set => ChangeHealth(value);
@@ -21,8 +21,8 @@ namespace Code.Views.UI.Game
 
         public bool IsFiring { get; set; }
         
-        private UserDataModel _userDataModel;
-        private float _health;
+        private CharacterDataModel _characterDataModel;
+        private int _health;
         private bool _needUpdate;
 
 
@@ -45,12 +45,12 @@ namespace Code.Views.UI.Game
 
         #endregion
 
-        private void ChangeHealth(float newHealth)
+        private void ChangeHealth(int newHealth)
         {
             if (photonView.IsMine)
             {
                 _health = newHealth;
-                _userDataModel.Health = newHealth;
+                _characterDataModel.Health = newHealth;
             }
             else
             {
@@ -72,16 +72,16 @@ namespace Code.Views.UI.Game
             else
             {
                 IsFiring = (bool) stream.ReceiveNext();
-                _health = (float) stream.ReceiveNext();
+                _health = (int) stream.ReceiveNext();
                 _needUpdate = (bool) stream.ReceiveNext();
             }
         }
 
         #endregion
 
-        public void SetUserDataModel(UserDataModel userDataModel)
+        public void SetUserDataModel(CharacterDataModel characterDataModel)
         {
-            _userDataModel = userDataModel;
+            _characterDataModel = characterDataModel;
         }
     }
 }
