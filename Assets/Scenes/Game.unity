@@ -1062,7 +1062,7 @@ MonoBehaviour:
   _playerPrefab: {fileID: 100030, guid: fe764102aa5aa431795da15fa2dec0e2, type: 3}
   _playerUiController: {fileID: 2101921536}
   _roomManager: {fileID: 1674812310}
-  _userDataManager: {fileID: 1654457183}
+  _characterDataManager: {fileID: 1654457183}
 --- !u!1 &1654457181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada2195836b6486ab1b3f68e2992378b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _authManager: {fileID: 1922864787}
 --- !u!1 &1674812308
 GameObject:
   m_ObjectHideFlags: 0

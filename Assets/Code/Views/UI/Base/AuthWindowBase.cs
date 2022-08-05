@@ -42,9 +42,9 @@ namespace Code.Views.UI.Base
             _passwordInput.onValueChanged.RemoveAllListeners();
         }
 
-        protected void ChangeSceneToLobby()
+        protected void ChangeSceneToCharacters()
         {
-            SceneManager.LoadScene((int) EScenesIndexes.Lobby);
+            SceneManager.LoadScene((int) EScenesIndexes.Characters);
         }
         
         private void UpdateUsername(string username)

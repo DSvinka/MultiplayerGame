@@ -3,7 +3,8 @@
     public enum EScenesIndexes
     {
         Auth = 0,
-        Lobby = 1,
-        Game = 2,
+        Characters = 1,
+        Lobby = 2,
+        Game = 3,
     }
 }
